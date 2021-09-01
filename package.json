@@ -10,7 +10,9 @@
     "eslint:fix": "eslint **/*.ts --fix"
   },
   "pre-commit": [
-    "tsc", "eslint", "test"
+    "tsc",
+    "eslint",
+    "test"
   ],
   "repository": {
     "type": "git",
@@ -37,6 +39,8 @@
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-sonarjs": "^0.10.0",
+    "eslint-plugin-unicorn": "^35.0.0",
     "jest": "^27.1.0",
     "pre-commit": "^1.2.2"
   }

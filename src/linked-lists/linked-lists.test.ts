@@ -1,3 +1,5 @@
+/* eslint-disable sonarjs/no-identical-functions */
+
 import {
   create, insert, removeByKey, shift, unshift, at,
 } from './implementation';
@@ -59,7 +61,7 @@ describe('linked lists', () => {
     });
     it('should throw RangeError when key exceeds list\'s size', () => {
       expect(() => {
-        insert(list, 'error', 10000);
+        insert(list, 'error', 10_000);
       }).toThrow(RangeError);
     });
   });
@@ -92,7 +94,7 @@ describe('linked lists', () => {
     });
     it('should throw RangeError when key exceeds list\'s size', () => {
       expect(() => {
-        removeByKey(list, 10000);
+        removeByKey(list, 10_000);
       }).toThrow(RangeError);
     });
   });
@@ -111,7 +113,7 @@ describe('linked lists', () => {
     });
     it('should throw RangeError when key exceeds list\' size', () => {
       expect(() => {
-        at(list, 10000);
+        at(list, 10_000);
       }).toThrow(RangeError);
     });
   });
