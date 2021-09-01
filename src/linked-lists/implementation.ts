@@ -4,7 +4,7 @@ import type {
   Display,
   Insert,
   RemoveByKey,
-  Search,
+  At,
   Shift,
   Unshift,
   LinkedList,
@@ -101,6 +101,20 @@ const removeByKey: RemoveByKey = <E extends unknown>(list: LinkedList<E>, key: n
   previousItem.next = previousItem.next?.next || null;
 };
 
+const at: At = <E extends unknown>(list: LinkedList<E>, key: number) => {
+  let currentKey = 0;
+  let currentItem: Link<E> | null | undefined = list.first;
+  while (currentKey < key) {
+    currentItem = currentItem?.next;
+    currentKey += 1;
+  }
+  if (!currentItem) {
+    throw new RangeError(`LinkedList doesn't contain key ${key}`);
+  }
+  
+  return currentItem.data;
+};
+
 export const run = () => {
   h1('Linked Lists');
 
@@ -127,4 +141,7 @@ export const run = () => {
   h2('delete');
   removeByKey(list, 1);
   output([...list]);
+
+  h2('at 2');
+  output(at(list,2));
 };
