@@ -28,7 +28,6 @@ export interface LinkedList<E extends unknown> {
 export type Create = <E extends unknown>() => LinkedList<E>;
 export type Unshift = <E extends unknown>(ll: LinkedList<E>, element: E) => void;
 export type Shift = <E extends unknown>(ll: LinkedList<E>) => void;
-export type Display = <E extends unknown>(ll: LinkedList<E>) => void;
 export type At = <E extends unknown>(ll: LinkedList<E>, key: number) => E;
 export type Insert = <E extends unknown>(ll: LinkedList<E>, element: E, key: number) => void;
 export type RemoveByKey = <E extends unknown>(ll: LinkedList<E>, key: number) => void;

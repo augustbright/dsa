@@ -1,7 +1,6 @@
 import {h1, h2, output} from '../utils';
 import type {
   Create,
-  Display,
   Insert,
   RemoveByKey,
   At,
@@ -38,12 +37,6 @@ export const create: Create = <E extends unknown>() => {
   return list;
 }
 
-export const display: Display = <E extends unknown>(list: LinkedList<E>) => {
-  for (let item of list) {
-    output(item);
-  }
-}
-
 export const unshift: Unshift = <E extends unknown>(list: LinkedList<E>, element: E) => {
   const first: Link<E> = {
     data: element,
@@ -78,7 +71,10 @@ export const insert: Insert = <E extends unknown>(list: LinkedList<E>, element: 
 };
 
 export const shift: Shift = <E extends unknown>(list: LinkedList<E>) => {
-  list.first = list.first?.next || null;
+  if (!list.first) {
+    throw new RangeError('Cannot shift empty list');
+  }
+  list.first = list.first.next;
 };
 
 export const removeByKey: RemoveByKey = <E extends unknown>(list: LinkedList<E>, key: number) => {
@@ -95,10 +91,10 @@ export const removeByKey: RemoveByKey = <E extends unknown>(list: LinkedList<E>,
     previousItem = previousItem?.next;
     previousKey += 1;
   }
-  if (!previousItem) {
-    throw new RangeError(`LinkedList doesn't contain key ${key - 1}`);
+  if (!previousItem || !previousItem.next) {
+    throw new RangeError(`LinkedList doesn't contain key ${key}`);
   }
-  previousItem.next = previousItem.next?.next || null;
+  previousItem.next = previousItem.next.next;  
 };
 
 export const at: At = <E extends unknown>(list: LinkedList<E>, key: number) => {
@@ -113,35 +109,4 @@ export const at: At = <E extends unknown>(list: LinkedList<E>, key: number) => {
   }
   
   return currentItem.data;
-};
-
-export const run = () => {
-  h1('Linked Lists');
-
-  let list = create<number>();
-
-  h2('unshift 7, 4');
-  unshift(list, 7);
-  unshift(list, 4);
-  display(list);
-
-  h2('to array');
-  output([...list]);
-
-  h2('insert');
-  insert(list, 10, 1);
-  insert(list, 11, 1);
-  insert(list, 12, 1);
-  output([...list]);
-
-  h2('shift');
-  shift(list);
-  output([...list]);
-
-  h2('delete');
-  removeByKey(list, 1);
-  output([...list]);
-
-  h2('at 2');
-  output(at(list,2));
 };
