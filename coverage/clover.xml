@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1630507789305" clover="3.2.0">
-  <project timestamp="1630507789305" name="All files">
+<coverage generated="1630508703864" clover="3.2.0">
+  <project timestamp="1630508703864" name="All files">
     <metrics statements="111" coveredstatements="111" conditionals="39" coveredconditionals="39" methods="8" coveredmethods="8" elements="158" coveredelements="158" complexity="0" loc="111" ncloc="111" packages="1" files="1" classes="1"/>
     <file name="implementation.ts" path="/home/vtumanov/repo/dsa/src/linked-lists/implementation.ts">
       <metrics statements="111" coveredstatements="111" conditionals="39" coveredconditionals="39" methods="8" coveredmethods="8"/>
