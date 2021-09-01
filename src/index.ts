@@ -1,1 +1,2 @@
-console.log('log from index.ts');
+import {run as runLL} from './linked-lists/implementation';
+runLL();

@@ -5,51 +5,31 @@ Each link contains a connection to another link.
 Linked list is the second most-used data structure after array.
 */
 
-// Simple typing
-export interface SimpleLink<E extends unknown> {
+import { SymbolDisplayPartKind } from "typescript";
+
+export interface Link<E extends unknown> {
   data: E;
-  next: SimpleLink<E> | null;
+  next: Link<E> | null;
 }
 
-export interface SimpleLinkedList<E extends unknown> {
-  first: SimpleLink<E>;
+export interface LinkedList<E extends unknown> {
+  first: Link<E> | null;
+  [Symbol.iterator]: () => {
+    next: () => {
+      done: false;
+      value: E;
+    } | {
+      done: true;
+      value: null;
+    }
+  }
 }
 
+export type Create = <E extends unknown>() => LinkedList<E>;
+export type Unshift = <E extends unknown>(ll: LinkedList<E>, element: E) => void;
+export type Shift = <E extends unknown>(ll: LinkedList<E>) => void;
+export type Display = <E extends unknown>(ll: LinkedList<E>) => void;
+export type Search = <E extends unknown>(ll: LinkedList<E>, key: number) => Link<E>;
+export type Insert = <E extends unknown>(ll: LinkedList<E>, element: E, key: number) => void;
+export type RemoveByKey = <E extends unknown>(ll: LinkedList<E>, key: number) => void;
 
-// Complex typing
-type LinkParams = 'Circular'|'Doubly'|undefined;
-
-export type Link<
-  E extends unknown,
-  Params extends LinkParams = undefined
-> =  {
-    data: E;
-    next: Extract<Params, 'Circular'> extends never ? Link<E, Params> | null : Link<E, Params>;
-} & (Extract<Params, 'Doubly'> extends never ? {} : {
-    previous: Extract<Params, 'Circular'> extends never ? Link<E, Params> | null : Link<E, Params>;
-});
-
-export interface LinkedList<E extends unknown, Params extends LinkParams = undefined> {
-  first: Link<E, Params>;
-}
-
-// examples
-
-// @ts-expect-error
-const link: Link<number, 'Circular'> = {
-  data: 1
-};
-link.next = link;
-
-const ll: LinkedList<number, 'Circular'> = {
-  first: link
-}
-
-const simpleLink: SimpleLink<number> = {
-  data: 1,
-  next: null
-};
-
-const simpleLL: SimpleLinkedList<number> = {
-  first: simpleLink
-};
