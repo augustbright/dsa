@@ -11,7 +11,7 @@ import type {
   Link
 } from './types';
 
-const create: Create = <E extends unknown>() => {
+export const create: Create = <E extends unknown>() => {
   const list: LinkedList<E> = {
     first: null,
     [Symbol.iterator]: () => {
@@ -38,13 +38,13 @@ const create: Create = <E extends unknown>() => {
   return list;
 }
 
-const display: Display = <E extends unknown>(list: LinkedList<E>) => {
+export const display: Display = <E extends unknown>(list: LinkedList<E>) => {
   for (let item of list) {
     output(item);
   }
 }
 
-const unshift: Unshift = <E extends unknown>(list: LinkedList<E>, element: E) => {
+export const unshift: Unshift = <E extends unknown>(list: LinkedList<E>, element: E) => {
   const first: Link<E> = {
     data: element,
     next: list.first
@@ -52,7 +52,7 @@ const unshift: Unshift = <E extends unknown>(list: LinkedList<E>, element: E) =>
   list.first = first;
 };
 
-const insert: Insert = <E extends unknown>(list: LinkedList<E>, element: E, key: number) => {
+export const insert: Insert = <E extends unknown>(list: LinkedList<E>, element: E, key: number) => {
   if (key < 0) {
     throw new RangeError(`The value of key cannot be negative`);
   }
@@ -77,11 +77,11 @@ const insert: Insert = <E extends unknown>(list: LinkedList<E>, element: E, key:
   previousItem.next = newLink;
 };
 
-const shift: Shift = <E extends unknown>(list: LinkedList<E>) => {
+export const shift: Shift = <E extends unknown>(list: LinkedList<E>) => {
   list.first = list.first?.next || null;
 };
 
-const removeByKey: RemoveByKey = <E extends unknown>(list: LinkedList<E>, key: number) => {
+export const removeByKey: RemoveByKey = <E extends unknown>(list: LinkedList<E>, key: number) => {
   if (key < 0) {
     throw new RangeError('The value of key cannot be negative');
   }
@@ -101,7 +101,7 @@ const removeByKey: RemoveByKey = <E extends unknown>(list: LinkedList<E>, key: n
   previousItem.next = previousItem.next?.next || null;
 };
 
-const at: At = <E extends unknown>(list: LinkedList<E>, key: number) => {
+export const at: At = <E extends unknown>(list: LinkedList<E>, key: number) => {
   let currentKey = 0;
   let currentItem: Link<E> | null | undefined = list.first;
   while (currentKey < key) {
