@@ -77,6 +77,29 @@ const insert: Insert = <E extends unknown>(list: LinkedList<E>, element: E, key:
   previousItem.next = newLink;
 };
 
+const shift: Shift = <E extends unknown>(list: LinkedList<E>) => {
+  list.first = list.first?.next || null;
+};
+
+const removeByKey: RemoveByKey = <E extends unknown>(list: LinkedList<E>, key: number) => {
+  if (key < 0) {
+    throw new RangeError('The value of key cannot be negative');
+  }
+  if (key === 0) {
+    return shift(list);
+  }
+
+  let previousKey = 0;
+  let previousItem: Link<E> | null | undefined = list.first;
+  while (previousKey < key - 1) {
+    previousItem = previousItem?.next;
+    previousKey += 1;
+  }
+  if (!previousItem) {
+    throw new RangeError(`LinkedList doesn't contain key ${key - 1}`);
+  }
+  previousItem.next = previousItem.next?.next || null;
+};
 
 export const run = () => {
   h1('Linked Lists');
@@ -93,5 +116,15 @@ export const run = () => {
 
   h2('insert');
   insert(list, 10, 1);
+  insert(list, 11, 1);
+  insert(list, 12, 1);
+  output([...list]);
+
+  h2('shift');
+  shift(list);
+  output([...list]);
+
+  h2('delete');
+  removeByKey(list, 1);
   output([...list]);
 };
