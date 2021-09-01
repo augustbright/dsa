@@ -1,4 +1,3 @@
-import {h1, h2, output} from '../utils';
 import type {
   Create,
   Insert,
@@ -7,7 +6,7 @@ import type {
   Shift,
   Unshift,
   LinkedList,
-  Link
+  
 } from './types';
 
 export const create: Create = <E extends unknown>() => {
@@ -20,34 +19,34 @@ export const create: Create = <E extends unknown>() => {
           if (!item) {
             return {
               done: true,
-              value: null
+              value: null,
             };
           }
           const result = {
             done: false as const,
-            value: item.data
+            value: item.data,
           };
           item = item.next;
           return result;
-        }
-      }
-    }
+        },
+      };
+    },
   };
 
   return list;
-}
+};
 
 export const unshift: Unshift = <E extends unknown>(list: LinkedList<E>, element: E) => {
   const first: Link<E> = {
     data: element,
-    next: list.first
+    next: list.first,
   };
   list.first = first;
 };
 
 export const insert: Insert = <E extends unknown>(list: LinkedList<E>, element: E, key: number) => {
   if (key < 0) {
-    throw new RangeError(`The value of key cannot be negative`);
+    throw new RangeError('The value of key cannot be negative');
   }
   if (key === 0) {
     return unshift(list, element);
@@ -65,7 +64,7 @@ export const insert: Insert = <E extends unknown>(list: LinkedList<E>, element: 
 
   const newLink: Link<E> = {
     data: element,
-    next: previousItem.next
+    next: previousItem.next,
   };
   previousItem.next = newLink;
 };
@@ -94,7 +93,7 @@ export const removeByKey: RemoveByKey = <E extends unknown>(list: LinkedList<E>,
   if (!previousItem || !previousItem.next) {
     throw new RangeError(`LinkedList doesn't contain key ${key}`);
   }
-  previousItem.next = previousItem.next.next;  
+  previousItem.next = previousItem.next.next;
 };
 
 export const at: At = <E extends unknown>(list: LinkedList<E>, key: number) => {
@@ -107,6 +106,6 @@ export const at: At = <E extends unknown>(list: LinkedList<E>, key: number) => {
   if (!currentItem) {
     throw new RangeError(`LinkedList doesn't contain key ${key}`);
   }
-  
+
   return currentItem.data;
 };

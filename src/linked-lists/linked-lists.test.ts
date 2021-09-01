@@ -1,4 +1,6 @@
-import {create, insert, removeByKey, shift, unshift, at} from './implementation';
+import {
+  create, insert, removeByKey, shift, unshift, at,
+} from './implementation';
 import { LinkedList } from './types';
 
 describe('linked lists', () => {
@@ -30,7 +32,7 @@ describe('linked lists', () => {
     unshift(list, 1);
     unshift(list, 2);
     unshift(list, 3);
-    expect([...list]).toEqual([3,2,1]);
+    expect([...list]).toEqual([3, 2, 1]);
   });
 
   describe('insert', () => {

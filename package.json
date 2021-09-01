@@ -4,8 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "tsc": "tsc --noEmit",
+    "eslint": "eslint **/*.ts",
+    "eslint:fix": "eslint **/*.ts --fix"
   },
+  "pre-commit": [
+    "eslint", "test"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/augustbright/dsa.git"
@@ -25,7 +31,13 @@
     "@babel/preset-env": "^7.15.0",
     "@babel/preset-typescript": "^7.15.0",
     "@types/jest": "^27.0.1",
+    "@typescript-eslint/eslint-plugin": "^4.30.0",
+    "@typescript-eslint/parser": "^4.30.0",
     "babel-jest": "^27.1.0",
-    "jest": "^27.1.0"
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.24.2",
+    "jest": "^27.1.0",
+    "pre-commit": "^1.2.2"
   }
 }

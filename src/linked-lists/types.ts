@@ -5,8 +5,6 @@ Each link contains a connection to another link.
 Linked list is the second most-used data structure after array.
 */
 
-import { SymbolDisplayPartKind } from "typescript";
-
 export interface Link<E extends unknown> {
   data: E;
   next: Link<E> | null;
@@ -31,4 +29,3 @@ export type Shift = <E extends unknown>(ll: LinkedList<E>) => void;
 export type At = <E extends unknown>(ll: LinkedList<E>, key: number) => E;
 export type Insert = <E extends unknown>(ll: LinkedList<E>, element: E, key: number) => void;
 export type RemoveByKey = <E extends unknown>(ll: LinkedList<E>, key: number) => void;
-
