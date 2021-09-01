@@ -10,7 +10,7 @@
     "eslint:fix": "eslint **/*.ts --fix"
   },
   "pre-commit": [
-    "eslint", "test"
+    "tsc", "eslint", "test"
   ],
   "repository": {
     "type": "git",

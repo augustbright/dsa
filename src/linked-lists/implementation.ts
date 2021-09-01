@@ -6,7 +6,7 @@ import type {
   Shift,
   Unshift,
   LinkedList,
-  
+  Link
 } from './types';
 
 export const create: Create = <E extends unknown>() => {
